@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
+#import "GTVideoViewController.h"
+#import "GTRecommendViewController.h"
 
 @interface AppDelegate ()<UITabBarControllerDelegate>
 
@@ -32,18 +34,9 @@
     viewController.tabBarItem.image = [UIImage imageNamed:@"icon.bundle/page@2x.png"];
     viewController.tabBarItem.selectedImage = [UIImage imageNamed:@"icon.bundle/page_selected@2x.png"];
     
-    UIViewController *controller2 = [[UIViewController alloc]init];
-    controller2.view.backgroundColor = [UIColor yellowColor];
-    controller2.tabBarItem.title = @"视频";
-    controller2.tabBarItem.image = [UIImage imageNamed:@"icon.bundle/video@2x.png"];
-    controller2.tabBarItem.selectedImage = [UIImage imageNamed:@"icon.bundle/video_selected@2x.png"];
+    GTVideoViewController *videoController = [[GTVideoViewController alloc]init];
 
-    UIViewController *controller3 = [[UIViewController alloc]init];
-    controller3.view.backgroundColor = [UIColor greenColor];
-    controller3.tabBarItem.title = @"推荐";
-    controller3.tabBarItem.image = [UIImage imageNamed:@"icon.bundle/like@2x.png"];
-    controller3.tabBarItem.selectedImage = [UIImage imageNamed:@"icon.bundle/like_selected@2x.png"];
-
+    GTRecommendViewController *recommendController = [[GTRecommendViewController alloc]init];
 
     UIViewController *controller4 = [[UIViewController alloc]init];
     controller4.view.backgroundColor = [UIColor lightGrayColor];
@@ -51,7 +44,7 @@
     controller4.tabBarItem.image = [UIImage imageNamed:@"icon.bundle/home@2x.png"];
     controller4.tabBarItem.selectedImage = [UIImage imageNamed:@"icon.bundle/home_selected@2x.png"];
 
-    [tabbarController setViewControllers:@[viewController,controller2,controller3,controller4]];
+    [tabbarController setViewControllers:@[viewController,videoController,recommendController,controller4]];
     
     tabbarController.delegate = self;
     
