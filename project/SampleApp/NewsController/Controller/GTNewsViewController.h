@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  GTNewsViewController.h
 //  SampleApp
 //
 //  Created by dequanzhu on 2019/4/6.
@@ -8,12 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TestView : UIView
-
-@end
-
-@interface ViewController : UIViewController
-
-
+/**
+ 新闻Tab对应的Controller
+ */
+@interface GTNewsViewController : UIViewController
 @end
 
