@@ -8,6 +8,7 @@
 
 #import "GTNormalTableViewCell.h"
 #import "GTListItem.h"
+#import "SDWebImage.h"
 
 @interface GTNormalTableViewCell ()
 
@@ -85,13 +86,13 @@
 
 - (void)layoutTableViewCellWithItem:(GTListItem *)item {
     
-    BOOL hasRead = [[NSUserDefaults standardUserDefaults] boolForKey:item.uniqueKey];
+//    BOOL hasRead = [[NSUserDefaults standardUserDefaults] boolForKey:item.uniqueKey];
     
-    if (hasRead) {
-        self.titleLabel.textColor = [UIColor lightGrayColor];
-    }else{
+//    if (hasRead) {
+//        self.titleLabel.textColor = [UIColor lightGrayColor];
+//    }else{
         self.titleLabel.textColor = [UIColor blackColor];
-    }
+//    }
 
     self.titleLabel.text = item.title;
 
@@ -107,9 +108,30 @@
 
     self.timeLabel.frame = CGRectMake(self.commentLabel.frame.origin.x + self.commentLabel.frame.size.width + 15, self.timeLabel.frame.origin.y, self.timeLabel.frame.size.width, self.timeLabel.frame.size.height);
 
-#warning
-    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:item.picUrl]]];
-    self.rightImageView.image = image;
+
+//    NSThread *downloadImageThread = [[NSThread alloc] initWithBlock:^{
+//
+//    }];
+//
+//    downloadImageThread.name = @"downloadImageThread";
+//    [downloadImageThread start];
+    
+//    dispatch_queue_global_t downloadQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+//    dispatch_queue_main_t mainQueue = dispatch_get_main_queue();
+//
+//    dispatch_async(downloadQueue, ^{
+//        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:item.picUrl]]];
+//        dispatch_async(mainQueue, ^{
+//            self.rightImageView.image = image;
+//        });
+//    });
+    
+    [self.rightImageView sd_setImageWithURL:[NSURL URLWithString:item.picUrl]
+                                  completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+                                        NSLog(@"");
+                                  }];
+    
+    
 }
 
 - (void)deleteButtonClick {
